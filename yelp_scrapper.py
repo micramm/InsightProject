@@ -100,12 +100,18 @@ def save_all_bounds(category, required_divisions, map_bounds=(37.9736,-122.5311,
         save_one_bound(category, bound, count)
     
 
-# print get_required_division('food')
+# print get_required_division('beautysvc')
+
 # save_all_bounds('banks', 2)
 # save_all_bounds('drugstores', 1)
 # save_all_bounds('postoffices', 1)
 # save_all_bounds('restaurants', 128)
-save_all_bounds('food', 64)
+# save_all_bounds('food', 64)
+# save_all_bounds('shopping', 256)
+# save_all_bounds('nightlife', 16)
+# save_all_bounds('localservices', 32)
+# save_all_bounds('homeservices', 128)
+# save_all_bounds('beautysvc', 64)
 
 # response = process_request(0, 'banks')
 # print json.dumps(response, sort_keys=True, indent = 4)
