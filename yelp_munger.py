@@ -1,5 +1,6 @@
 import os
 import json
+import csv
 
 root_dir = 'yelp_data/html'
 
@@ -35,8 +36,6 @@ all_keys = [
             'url',
         ]
 
-all_keys = set()
-
 def flatten_dictionary(d, flattened = None):
     '''
     returns a single level representaion of a nexted dictionary
@@ -53,8 +52,11 @@ def flatten_dictionary(d, flattened = None):
             flatten_dictionary(d[key], flattened)
     return flattened
 
-def html_to_csv():
-    global all_keys
+#test code for dictionary flatterning
+# test = {'a': 1, 'b':2, 'c':{'ca': 3, 'cb': 4}, 'cb': 5}
+# print flatten_dictionary(test)
+
+def html_to_csv(all_keys, dict_writer):
     file_counter = 0
     business_counter = 0
     for root, subFolders, files in os.walk(root_dir):
@@ -65,36 +67,21 @@ def html_to_csv():
                 text = json.loads(f.read())
                 #loads to dictionary
                 text = json.loads(text)
-    #             if file_counter == 0:
                 businesses = text['businesses']
                 for b in businesses:
                     b = flatten_dictionary(b)
-#                     if business_counter == 0:
-#                         for k, v in b.iteritems():
-#                             print k, v
-#                         first_keys = b.keys()
-#                         first_keys = set(first_keys)
+#                     print 'address' in b
                     business_counter += 1
-                    keys = b.keys()
+                    keys = set(b.keys())
                     keys = set(keys)
-                    all_keys = all_keys.union(keys)
-    #                 assert keys == first_keys, keys
-    #                 print b.keys()
-    #                 print type(text)
-    #                 d = json.dumps(text)
-    #                 print d
-    #                 print text.dump()
-    #             print f.read()
+                    assert keys.issubset(set(all_keys)), ("found unknown key: " + keys - set(all_keys))
+                    dict_writer.writerow(b)
                 file_counter += 1
+                print file_counter
     return file_counter, business_counter
 
-
-
-# test = {'a': 1, 'b':2, 'c':{'ca': 3, 'cb': 4}, 'cb': 5}
-# print flatten_dictionary(test)
-    
-    
-file_counter, business_counter = html_to_csv()
+with open('yelp_data/yelp_raw_2.csv', 'w') as csv_file:
+    dict_writer = csv.DictWriter(csv_file, all_keys)
+    dict_writer.writer.writerow(all_keys)
+    file_counter, business_counter = html_to_csv(all_keys, dict_writer)
 print 'Finished processing {} files wiht {} businesses'.format(file_counter, business_counter)
-for k in sorted(all_keys):
-    print k

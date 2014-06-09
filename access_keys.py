@@ -5,8 +5,10 @@ class access_keys(object):
     
     google_key = 'AIzaSyBRarCSVOLP2oDb3u3kdqNYa4LgtdqdZyg'
     
+    mapquest_key = 'Fmjtd%7Cluur2g6rnh%2Crn%3Do5-9a8al6'
+    
     yelp_key = 'YpxJxquIVkSJaNIldrnW7A'#V1 of the API, depreciated
     yelp_consumer_key = 'QCHRDsoZ3fDnJGU8ayvFYg'
     yelp_consumer_secret = '3g_oFn47nMyFPmEXTRQ5VDjbtU8'
     yelp_token = 'B2z2DamMvEHB75XBGv3LTwCkFC32GI1A'
-    yelp_token_secret = 'QiN7NJbGmc_Vr0YQ4gVdyYG01-M'
+    yelp_token_secret = 'sQiN7NJbGmc_Vr0YQ4gVdyYG01-M'

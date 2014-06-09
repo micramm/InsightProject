@@ -25,4 +25,7 @@ if __name__ == '__main__':
 #mapquest, getting all gas stations
 '''
 http://www.mapquestapi.com/search/v2/radius?key=Fmjtd%7Cluur2g6rnh%2Crn%3Do5-9a8al6&callback=renderExampleOneResults&origin=redwood%20city,%20ca&hostedData=mqap.ntpois|group_sic_code=?|554101&radius=10&maxMatches=1000
+http://www.mapquestapi.com/geocoding/v1/batch?key=Fmjtd%7Cluur2g6rnh%2Crn%3Do5-9a8al6&callback=renderBatch&location=7 Avocet Drive, 94065&location=1835 Delaware Street, 94703
+http://www.mapquestapi.com/geocoding/v1/batch?key=Fmjtd%257Cluur2g6rnh%252Crn%253Do5-9a8al6
+
 '''
