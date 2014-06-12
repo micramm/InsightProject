@@ -2,6 +2,7 @@ from access_keys import access_keys
 import urllib
 import urllib2
 import json
+import requests
 
 class mapquest_api(object):
     
@@ -18,13 +19,9 @@ class mapquest_api(object):
     
     def distance_matrix_url(self):
         base_url = 'http://www.mapquestapi.com/directions/v2/routematrix?'
-        encoding = []
-#         for loc in locations:
-#             encoding.append(('location', loc))
-        url = base_url + 'key={}&'.format(self.api_key)# + urllib.urlencode(encoding)
+        url = base_url + 'key={}&'.format(self.api_key) + 'doReverseGeocode:false&'
         return url
         
-    
     def geocoding_information(self, locations):
         url = self.geocoding_url(locations)
         try:
@@ -56,29 +53,28 @@ class mapquest_api(object):
                                'allToAll': True
                                 }
                    }
-        request_data =  json.dumps(content)
-        url += '&json={}'.format(request_data)
-        print url
-        try:
-            conn = urllib2.urlopen(url, None)
-            try:
-                response = json.loads(conn.read())
-            finally:
-                conn.close()
-        except urllib2.HTTPError, error:
-                response = json.loads(error.read())    
-        return response
+        resp = requests.post(url, data = json.dumps(content))
+        return json.loads(resp.text)["distance"]
 
 if __name__ == '__main__':
     api = mapquest_api()
-    addresses = ['7 Avocet Dr. Redwood City, CA, 94065',
-             '640 Masonic Way, Belmont, CA 94002',
-             '716 Laurel St San Carlos, CA 94070',
-             '796 Laurel St San Carlos, CA 94070',
-             '2248 Westborough Blvd South San Francisco, CA 94015',
-             ] * 5
-    resp = api.get_all_to_all_matrix(addresses)
-    print resp
-#     resp = json.load(resp)
-#     print json.dump(resp, indent = 4)
+    addresses = ['37.524968,-122.2508315',
+                 '37.520515 -122.257320',
+                 '37.494497 -122.246788',
+                 '37.563856 -122.249911',
+                 '37.487424 -122.235715',
+                 '37.547685 -122.298318',
+                 '37.551216 -122.301655',
+                 '37.524105 -122.252680',
+                 '37.519722 -122.275186',
+                 '37.545468 -122.272053',
+                 '37.529040 -122.289248',
+                 '37.561070 -122.274370',
+                 '37.568597 -122.266075',
+             ]
+    import time
+    t = time.time()
+    matrix = api.get_all_to_all_matrix(addresses)
+    print time.time() - t
+#     print matrix
     
