@@ -1,7 +1,5 @@
 from access_keys import access_keys
 
-
-
 class google_api(object):
     
     def __init__(self):

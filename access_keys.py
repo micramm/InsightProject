@@ -12,3 +12,5 @@ class access_keys(object):
     yelp_consumer_secret = '3g_oFn47nMyFPmEXTRQ5VDjbtU8'
     yelp_token = 'B2z2DamMvEHB75XBGv3LTwCkFC32GI1A'
     yelp_token_secret = 'sQiN7NJbGmc_Vr0YQ4gVdyYG01-M'
+    
+    amazon_rds_password = '12345678'
