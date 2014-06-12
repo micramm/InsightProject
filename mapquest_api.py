@@ -3,6 +3,7 @@ import urllib
 import urllib2
 import json
 import requests
+import numpy as np
 
 class mapquest_api(object):
     
@@ -54,7 +55,9 @@ class mapquest_api(object):
                                 }
                    }
         resp = requests.post(url, data = json.dumps(content))
-        return json.loads(resp.text)["distance"]
+        distance_list = json.loads(resp.text)["distance"]
+        distance_arr = np.array(distance_list)
+        return distance_arr
 
 if __name__ == '__main__':
     api = mapquest_api()
