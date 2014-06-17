@@ -63,9 +63,9 @@ if __name__ == '__main__':
     #testing the api with a simple call
     api = four_square_api()
 #     match = api.find_matching_business("Peet's", 94070, 6506050003)
-    hours_url = api.venue_hours_url('40a55d80f964a52020f31ee3')
-#     result = api.find_next_venues('49c445c0f964a520b6561fe3')
-    print hours_url
+#     hours_url = api.venue_hours_url('40a55d80f964a52020f31ee3')
+    result = api.find_next_venues('4a57edf0f964a52018b71fe3')
+    print result
 #     print match
 #     venue_id = '40a55d80f964a52020f31ee3'
 #     venue_id = '49f78793f964a520b16c1fe3'#town
