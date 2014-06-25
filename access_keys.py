@@ -13,4 +13,7 @@ class access_keys(object):
     yelp_token = 'B2z2DamMvEHB75XBGv3LTwCkFC32GI1A'
     yelp_token_secret = 'sQiN7NJbGmc_Vr0YQ4gVdyYG01-M'
     
-    amazon_rds_password = '12345678'
+    amazon_rds_user = 'hoppr'
+    amazon_rds_password = 'Us0HZ0dY8cbigmo9vd8z'
+    
+    flask_secret_key = '3pjZRmHZCLths0PK0n7K'
